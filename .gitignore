@@ -1,0 +1,3 @@
+ssh-copy-id.spec
+build/
+*.pyc
