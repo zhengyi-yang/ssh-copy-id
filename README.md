@@ -19,6 +19,4 @@ ssh-copy-id.py [-h] [-i [IDENTITY_FILE]] [-p [PORT]] [user@]machine
 For Windows users, there is a pre-built *exe* executable file (only tested on Windows 7 64-bit) under ```dist```.
 
 ## License
-MIT License &copy; Zhengyi Yang
-
-
+[MIT License](https://zhengyi.mit-license.org/@2017) &copy; Zhengyi Yang
