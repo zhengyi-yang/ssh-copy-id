@@ -31,7 +31,7 @@ class DeployKey():
 
         self.password = password
         self.port = port
-		
+
         if local_key_path is None:
             self.local_key_path = self._get_defalut_local_key_path()
         else:
@@ -42,7 +42,8 @@ class DeployKey():
             self.remote_key_path = remote_key_path
 
     def _get_defalut_local_key_path(self):
-        return os.path.expanduser('~') + os.sep + '.ssh' + os.sep + 'id_rsa.pub'
+        home = os.path.expanduser('~')
+        return os.path.join(home, '.ssh', 'id_rsa.pub')
 
     def _get_defalut_remote_key_path(self):
         return '~/.ssh/authorized_keys'
@@ -60,8 +61,8 @@ class DeployKey():
         key = self._get_local_key()
         copied = 0
         with(settings(hide('everything'),
-            user=self.username, host_string=self.hostname,
-                password=self.password, port=self.port,)):
+                      user=self.username, host_string=self.hostname,
+                      password=self.password, port=self.port,)):
             if '1' in (run('[ -f %s ] && echo 1 || echo 0' %
                            self.remote_key_path)):
                 authorized_keys = run('cat %s' % self.remote_key_path)
@@ -82,6 +83,7 @@ class DeployKey():
             print 'Number of key copyed: ', copied
             print ("Now try logging into the machine with: 'ssh %s@%s'" %
                    (self.username, self.hostname))
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ssh-copy-id by Zhengyi')
