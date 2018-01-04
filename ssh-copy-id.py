@@ -33,19 +33,19 @@ class DeployKey():
         self.port = port
 
         if local_key_path is None:
-            self.local_key_path = self._get_defalut_local_key_path()
+            self.local_key_path = self._get_default_local_key_path()
         else:
             self.local_key_path = os.path.abspath(local_key_path)
         if remote_key_path is None:
-            self.remote_key_path = self._get_defalut_remote_key_path()
+            self.remote_key_path = self._get_default_remote_key_path()
         else:
             self.remote_key_path = remote_key_path
 
-    def _get_defalut_local_key_path(self):
+    def _get_default_local_key_path(self):
         home = os.path.expanduser('~')
         return os.path.join(home, '.ssh', 'id_rsa.pub')
 
-    def _get_defalut_remote_key_path(self):
+    def _get_default_remote_key_path(self):
         return '~/.ssh/authorized_keys'
 
     def _get_local_key(self):
